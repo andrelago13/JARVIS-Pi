@@ -1,0 +1,11 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar for Hello World example
+ */
+
+grammar hello;
+
+public <greet> = (Good morning | Hello) ( Jarvis );
+public <farewell> = ( Farewell );
+public <heisenberg> = (Say my name | You're hi zen berg);
