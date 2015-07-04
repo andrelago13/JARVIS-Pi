@@ -1,22 +1,10 @@
 package jarvis;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
-import javazoom.jl.player.Player;
 import freetts.TextSynthesizer;
 import sound.MP3Player;
 import sphinx.SoundListener;
 
 public class InteractorTest {
-	private Player player = null; 
-
 	public void start() {
 		SoundListener listener = null;
 		TextSynthesizer synth = null;
