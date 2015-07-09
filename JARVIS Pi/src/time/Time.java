@@ -90,6 +90,26 @@ public class Time implements Comparable<Time> {
 
 		return 0;
 	}
+	
+	public Time difference(Time t2) {
+		return new Time(this.hours-t2.hours, this.minutes-t2.minutes, this.seconds-t2.seconds);		
+	}
+	
+	public Time absoluteDifference(Time t2) {
+		int comp = compareTo(t2);
+		if(comp == -1)
+			return t2.difference(this);
+		
+		return difference(t2);
+	}
+	
+	public static Time absoluteDifference(Time t1, Time t2) {
+		return t1.absoluteDifference(t2);
+	}
+	
+	public static Time difference(Time t1, Time t2) {
+		return t1.difference(t2);
+	}
 
 	public static Time getCurrentTime() {
 		Calendar now = Calendar.getInstance();

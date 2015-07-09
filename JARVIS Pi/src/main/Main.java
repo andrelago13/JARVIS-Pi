@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import time.Date;
 import time.Time;
 import time.alarm.Alarm;
+import time.alarm.AlarmSystem;
 import jarvis.InteractorTest;
 
 public class Main {
@@ -19,6 +20,16 @@ public class Main {
 		/*InteractorTest it = new InteractorTest();
 		it.start();
 		System.exit(0);*/
+		
+		AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
+		as.start();
+		
+		try {
+			Thread.sleep(200000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		as.stop();
 
 	}
 	
