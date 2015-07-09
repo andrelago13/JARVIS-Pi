@@ -12,15 +12,15 @@ public class Date implements Comparable<Date> {
 	public static final int monthDaysNormalYear[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	public static final int monthDaysLeapYear[] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-	private Time time;
+	protected Time time;
 
 	protected int year;
 	protected int month;
 	protected int day;
 
 	public Date(int year, int month, int day, int hours, int minutes, int seconds) throws IllegalArgumentException {
-		
-		if(!validDate(year, month, hours))
+
+		if(!validDate(year, month, day))
 			throw new IllegalArgumentException();
 
 		this.time = new Time(hours, minutes, seconds);
@@ -52,15 +52,18 @@ public class Date implements Comparable<Date> {
 	}
 	
 	public Boolean validDate(int year, int month, int day) {
+		
 		if(year < minYear || year > maxYear || month < minMonth || month > maxMonth || day < minDay)
 			return false;
 		
 		if(year % 4 == 0) {		// Leap year
-			if(day > monthDaysLeapYear[month-1])
+			if(day > monthDaysLeapYear[month-1]) {
 				return false;
+			}
 		} else {				// Normal year
-			if(day > monthDaysNormalYear[month-1])
+			if(day > monthDaysNormalYear[month-1]) {
 				return false;
+			}
 		}
 		
 		return true;
@@ -92,12 +95,10 @@ public class Date implements Comparable<Date> {
 		int month = now.get(Calendar.MONTH); // Note: zero based!
 		int day = now.get(Calendar.DAY_OF_MONTH);
 		
-		System.out.println(":" + year + "," + month + "," + day);
-		
-		Date date = new Date(year, month, day);
+		Date date = new Date(year, month + 1, day);
 		date.setTime(Time.getCurrentTime());
 		
-		return new Date();
+		return date;
 	}
 
 }
