@@ -1,8 +1,10 @@
 package main;
 
 import java.util.Calendar;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import sound.MP3Player;
 import time.Date;
 import time.Time;
 import time.alarm.Alarm;
@@ -23,14 +25,23 @@ public class Main {
 		
 		AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
 		as.start();
+	
+		as.addAlarm(new Alarm(22, 07, 0));
 		
-		try {
-			Thread.sleep(200000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		Scanner s = new Scanner(System.in);
+		String line = s.nextLine();
+		
+		while(!line.equals("hi")) {
+			
+			System.out.println(line);
+			
+			if(line.equals("stop"))
+				as.stop();
+			// TODO stop sound
+			line = s.nextLine();
 		}
+		
 		as.stop();
-
 	}
 	
 	/*Calendar now = Calendar.getInstance();

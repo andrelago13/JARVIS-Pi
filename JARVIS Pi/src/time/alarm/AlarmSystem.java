@@ -1,7 +1,6 @@
 package time.alarm;
 
 import java.util.ArrayList;
-import java.util.Timer;
 
 public class AlarmSystem {
 	
@@ -21,27 +20,23 @@ public class AlarmSystem {
 		return instance;
 	}
 	
-	public void start() {
-		running = true;
-		
-		new Thread( new Runnable() {
-		    @Override
-		    public void run() {
-		    	while(running) {
-		    		try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-		    		
-		    		System.out.println("Here");
-		    	}
-		    }
-		}).start();
+	public void addAlarm(Alarm alarm) {
+		alarms.add(alarm);
+		if(running)
+			alarm.schedule();
 	}
 	
 	public void stop() {
 		running = false;
+		for(int i = 0; i < alarms.size(); i++) {
+			alarms.get(i).cancel();
+		}
 	}
 	
+	public void start() {
+		running = true;
+		for(int i = 0; i < alarms.size(); i++) {
+			alarms.get(i).schedule();
+		}
+	}
 }

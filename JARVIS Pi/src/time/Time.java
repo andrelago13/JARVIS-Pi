@@ -6,10 +6,17 @@ public class Time implements Comparable<Time> {
 
 	public static final int minHours = 0;
 	public static final int maxHours = 23;
+	public static final int numHours = 24;
 	public static final int minMinutes = 0;
 	public static final int maxMinutes = 59;
+	public static final int numMinutes = 60;
 	public static final int minSeconds = 0;
 	public static final int maxSeconds = 59;
+	public static final int numSeconds = 60;
+	
+	public static final int secToMillis = 1000;
+	public static final int minToMillis = 60*secToMillis;
+	public static final int hourToMillis = 60*minToMillis;
 
 	protected int hours;
 	protected int minutes;
@@ -18,11 +25,27 @@ public class Time implements Comparable<Time> {
 	public Time(int hours, int minutes, int seconds) throws IllegalArgumentException {
 
 		if(!validHours(hours) || !validMinutes(minutes) || !(validSeconds(seconds)))
-			throw(new IllegalArgumentException());
+			throw(new IllegalArgumentException("args: " + hours + " " + minutes + " " + seconds));
 
 		this.setHours(hours);
 		this.setMinutes(minutes);
 		this.setSeconds(seconds);
+	}
+	
+	public Time(long millis) {
+		this(millisToHours(millis), millisToMinutes(millis), millisToSeconds(millis));
+	}
+	
+	public static int millisToHours(long millis) {
+		return (int) ((millis / (hourToMillis)) % numHours);
+	}
+	
+	public static int millisToMinutes(long millis) {
+		return (int) ((millis / (minToMillis)) % numMinutes);
+	}
+	
+	public static int millisToSeconds(long millis) {
+		return (int) (millis / secToMillis) % numSeconds;
 	}
 
 	public static Boolean validHours(int hours) {
@@ -92,19 +115,7 @@ public class Time implements Comparable<Time> {
 	}
 	
 	public Time difference(Time t2) {
-		return new Time(this.hours-t2.hours, this.minutes-t2.minutes, this.seconds-t2.seconds);		
-	}
-	
-	public Time absoluteDifference(Time t2) {
-		int comp = compareTo(t2);
-		if(comp == -1)
-			return t2.difference(this);
-		
-		return difference(t2);
-	}
-	
-	public static Time absoluteDifference(Time t1, Time t2) {
-		return t1.absoluteDifference(t2);
+		return new Time(Math.abs(t2.toMillis() - toMillis()));		
 	}
 	
 	public static Time difference(Time t1, Time t2) {
@@ -118,5 +129,9 @@ public class Time implements Comparable<Time> {
 		int second = now.get(Calendar.SECOND);
 		
 		return new Time(hour, minute, second);
+	}
+	
+	public long toMillis() {
+		return seconds*secToMillis + minutes*minToMillis + hours*hourToMillis;
 	}
 }
