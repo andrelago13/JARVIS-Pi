@@ -14,6 +14,9 @@ public class Time implements Comparable<Time> {
 	public static final int maxSeconds = 59;
 	public static final int numSeconds = 60;
 	
+	public static final Time MIDNIGHT_DAYBEFORE = new Time(23, 59, 0);
+	public static final Time MIDNIGHT_DAYAFTER = new Time(0, 0, 0);
+	
 	public static final int secToMillis = 1000;
 	public static final int minToMillis = 60*secToMillis;
 	public static final int hourToMillis = 60*minToMillis;

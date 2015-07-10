@@ -28,14 +28,13 @@ public class MP3Player {
 			System.out.println(e);
 		}
 
-		final Player fnlPlayer = player;
-
 		// run in new thread to play in background
 		playThread = (new Thread() {
 			public void run() {
+				System.out.println("Playing");
 				try {
-					if(fnlPlayer != null)
-						fnlPlayer.play();
+					if(player != null)
+						player.play();
 				}
 				catch (Exception e) { System.out.println(e); }
 			}
@@ -44,6 +43,8 @@ public class MP3Player {
 	}
 
 	public void stop() {
+		if(player != null)
+			player.close();
 		if(playThread != null)
 			playThread.interrupt();
 	}

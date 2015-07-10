@@ -26,7 +26,7 @@ public class Main {
 		AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
 		as.start();
 	
-		as.addAlarm(new Alarm(22, 07, 0));
+		as.addAlarm(new Alarm(8, 17, 0));
 		
 		Scanner s = new Scanner(System.in);
 		String line = s.nextLine();
@@ -37,7 +37,10 @@ public class Main {
 			
 			if(line.equals("stop"))
 				as.stop();
-			// TODO stop sound
+			if(line.equals("again")) {
+				as.getAlarms().get(0).setTime(new Time(8, 12, 0));
+				as.getAlarms().get(0).schedule();
+			}
 			line = s.nextLine();
 		}
 		

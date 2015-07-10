@@ -8,6 +8,8 @@ import time.Time;
 
 public class Alarm {
 	
+	// TODO add function to stop ringing
+	
 	private Time time;
 	private Timer timer;
 	private MP3Player ringPlayer;
@@ -35,8 +37,9 @@ public class Alarm {
 		Time diff = time.difference(curr_time);
 		long diff_long = diff.toMillis();
 		
-		if(curr_time.compareTo(time) != -1) {
-			diff_long = diff_long + Time.numHours*Time.hourToMillis;
+		if(curr_time.compareTo(time) != -1) {	// FIXME correct
+			diff_long = time.difference(Time.MIDNIGHT_DAYAFTER).toMillis();
+			diff_long += curr_time.difference(Time.MIDNIGHT_DAYBEFORE).toMillis();
 		}
 		
 		System.out.println("Scheduling alarm to: " + diff_long + " milliseconds.");
@@ -53,6 +56,9 @@ public class Alarm {
 	
 	public void cancel() {
 		timer.cancel();
-		ringPlayer.stop();
+	}
+	
+	public void stopRing() {
+		ringPlayer.stop();		
 	}
 }

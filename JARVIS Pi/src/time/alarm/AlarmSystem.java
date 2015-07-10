@@ -29,7 +29,7 @@ public class AlarmSystem {
 	public void stop() {
 		running = false;
 		for(int i = 0; i < alarms.size(); i++) {
-			alarms.get(i).cancel();
+			alarms.get(i).stopRing();
 		}
 	}
 	
@@ -38,5 +38,9 @@ public class AlarmSystem {
 		for(int i = 0; i < alarms.size(); i++) {
 			alarms.get(i).schedule();
 		}
+	}
+	
+	public ArrayList<Alarm> getAlarms() {
+		return alarms;
 	}
 }
