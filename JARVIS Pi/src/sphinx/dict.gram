@@ -6,6 +6,13 @@
 
 grammar hello;
 
-public <greet> = (Good morning | Hello) ( Jarvis );
-public <farewell> = ( Farewell );
-public <heisenberg> = (Say my name | You're hi zen berg);
+public <greet> = (good morning | good afternoon | good evening | hello | hey | hi ) jarvis | jarvis ;
+public <farewell> = ( farewell );
+
+public <heisenberg> = (say my name | you're hi zen berg);
+
+public <zero> = (zero);
+public <digit> = (one | two | three | four | five | six | seven | eight | nine);
+public <tenths> = (twenty | thirty | forty | fifty | sixty | seventy | eighty | ninety);
+public <tenToNineteen> = (ten | eleven | twelve | thirteen | fourteen | fifteen | sixteen | seventeen | eighteen | nineteen);
+public <number> = (<zero> | <digit> | <tenToNineteen> | <tenths> | <tenths> <digit>);

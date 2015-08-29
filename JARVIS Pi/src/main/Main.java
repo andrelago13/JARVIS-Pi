@@ -19,11 +19,11 @@ public class Main {
 	private static final int DAY = 24 * HOUR;
 
 	public static void main(String[] args) {
-		/*InteractorTest it = new InteractorTest();
+		InteractorTest it = new InteractorTest();
 		it.start();
-		System.exit(0);*/
+		System.exit(0);
 		
-		AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
+		/*AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
 		as.start();
 	
 		as.addAlarm(new Alarm(8, 17, 0));
@@ -44,7 +44,7 @@ public class Main {
 			line = s.nextLine();
 		}
 		
-		as.stop();
+		as.stop();*/
 	}
 	
 	/*Calendar now = Calendar.getInstance();
