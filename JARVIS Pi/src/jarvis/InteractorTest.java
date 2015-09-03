@@ -22,9 +22,9 @@ public class InteractorTest {
 			//synth.speakString(message);
 
 			if(message.equals("say my name")) {
-				MP3Player.playFile("./resources/sound/heisenberg/youre-heisenberg.mp3");
+				MP3Player.playFileForeground("./resources/sound/heisenberg/youre-heisenberg.mp3");
 			} else if (message.equals("you're hi zen berg")) {
-				MP3Player.playFile("./resources/sound/heisenberg/youre-goddamn-right.mp3");
+				MP3Player.playFileForeground("./resources/sound/heisenberg/youre-goddamn-right.mp3");
 			}
 		}
 		synth.speakString("I'm leaving bitch fucking ass mother fucker");

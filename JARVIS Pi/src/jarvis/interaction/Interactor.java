@@ -1,41 +1,55 @@
 package jarvis.interaction;
 
-import jarvis.interaction.state.JarvisMainContext;
-import jarvis.interaction.state.JarvisMainState;
-import jarvis.interaction.state.mainstates.IdleMainState;
+import designpatterns.State;
+import jarvis.interaction.state.MainContext;
+import jarvis.interaction.state.MainState;
 
-public class Interactor implements JarvisMainContext {
+public class Interactor implements MainContext {
 	
-	private JarvisMainState state = null;
-	
-	public Interactor() {
-		state = new IdleMainState(this);
+	private MainState state = null;
+
+	public State getState() {
+		return state;
 	}
 
-	public void receiveString(String message) {
-		state.receiveString(message);
-		// TODO que faz aqui ??
-	}
-
-	public void setState(JarvisMainState state) {
-		endCurrState();
+	public void setState(MainState state) throws IllegalArgumentException {
+		if(state == null)
+			throw new IllegalArgumentException();
+		
 		this.state = state;
-		initiateCurrState();
 	}
 
-	private void endCurrState() {
-		if(this.state != null)
-			this.state.end();
+	public void setState(State state) throws IllegalArgumentException {
+		if(!(state instanceof MainState))
+			throw new IllegalArgumentException();
+		
+		setState((MainState) state);
 	}
 
-	private void initiateCurrState() {
-		if(this.state != null)
-			this.state.initiate();
+	public void handle(String message) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	@Override
-	public void respondToUser(String message) {
-		// TODO use synth to speak
+	public void activate() {
+		// TODO create listening cycle
 	}
+
+	public void deactivate() {
+		// TODO leave
+		
+	}
+
+	public void replyToUser(String message) {
+		// TODO use synth to respond
+		
+	}
+
+	public String getUserName() {
+		// TODO complete with a configurations class as singleton (maybe)
+		return "sir";
+	}
+	
+	
 
 }

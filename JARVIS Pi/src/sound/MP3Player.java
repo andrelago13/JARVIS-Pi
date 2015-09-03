@@ -31,7 +31,6 @@ public class MP3Player {
 		// run in new thread to play in background
 		playThread = (new Thread() {
 			public void run() {
-				System.out.println("Playing");
 				try {
 					if(player != null)
 						player.play();
@@ -49,7 +48,7 @@ public class MP3Player {
 			playThread.interrupt();
 	}
 
-	public static void playFile(String filename) {
+	public static void playFile(String filename, Boolean foreground) {
 
 		Player player = null;
 
@@ -65,15 +64,30 @@ public class MP3Player {
 
 		final Player fnlPlayer = player;
 
-		// run in new thread to play in background
-		new Thread() {
-			public void run() {
-				try {
-					if(fnlPlayer != null)
-						fnlPlayer.play();
-				}
-				catch (Exception e) { System.out.println(e); }
+		if(foreground) {									// run on main thread, blocking program
+			try {
+				if(fnlPlayer != null)
+					fnlPlayer.play();
 			}
-		}.start();
+			catch (Exception e) { System.out.println(e); }
+		} else {											// run in new thread to play in background
+			new Thread() {
+				public void run() {
+					try {
+						if(fnlPlayer != null)
+							fnlPlayer.play();
+					}
+					catch (Exception e) { System.out.println(e); }
+				}
+			}.start();
+		}
+	}
+
+	public static void playFileBackground(String filename) {
+		playFile(filename, false);
+	}
+	
+	public static void playFileForeground(String filename) {
+		playFile(filename, true);
 	}
 }

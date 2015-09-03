@@ -37,7 +37,7 @@ public class Alarm {
 		Time diff = time.difference(curr_time);
 		long diff_long = diff.toMillis();
 		
-		if(curr_time.compareTo(time) != -1) {	// FIXME correct
+		if(curr_time.compareTo(time) != -1) {	// FIXME correct, use week format schedule with possibility for specific dates and repititions, then use cycle to check for the alarms. Add a "receiver" sort of thing
 			diff_long = time.difference(Time.MIDNIGHT_DAYAFTER).toMillis();
 			diff_long += curr_time.difference(Time.MIDNIGHT_DAYBEFORE).toMillis();
 		}

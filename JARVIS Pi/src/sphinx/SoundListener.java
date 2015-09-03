@@ -29,6 +29,10 @@ public class SoundListener {
 		recognizer.deallocate();
 	}
 
+	public String listenOnce() {
+		return listenOnce(false);
+	}
+	
 	public String listenOnce(Boolean printResult) {
 
 		Result result = null;
