@@ -15,9 +15,9 @@
 * Opening or closing electrical blinds on windows
 * Toggling lights
 
-### I'm programming the software using Java on Eclipse for several reasons: I feel comfortable coding in Java quickly and correctly; the use of Design Patters is made more simple by Java itself and the Eclipse features; Java simplifies interaction with microphones and speakers.
+### I'm programming the software using Java on Eclipse for several reasons: I feel comfortable coding in Java quickly and correctly; the use of Design Patterns is made more simple by Java itself and the Eclipse features; Java simplifies interaction with microphones and speakers.
 ### I have also considered using C++, mainly because it is more efficient than Java in many aspects, but since I don't expect the final result to be a very "heavy" program, I think Java will do just fine.
 
-### Also, I intend to run the software on a Raspberry Pi, since it is a small and powerfull device with many features, such as internet acces, which is perfect if I go on to building a mobile app to interact with the JARVIS system via Wi-Fi.
+### Also, I intend to run the software on a Raspberry Pi, since it is a small and powerfull device with many features, such as internet acces, which is perfect if I go on to building a mobile app to interact with the JARVIS system via WiFi.
 
 ### Please remember to keep this information private, and thank you for your cooperation. This is a very important project for me, so you must be somehow important to me since I gave you access to my biggest hobbie of all! Thank you!
