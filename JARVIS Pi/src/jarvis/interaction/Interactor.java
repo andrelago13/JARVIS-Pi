@@ -1,6 +1,5 @@
 package jarvis.interaction;
 
-import sound.MP3Player;
 import sphinx.SoundListener;
 import designpatterns.State;
 import freetts.TextSynthesizer;

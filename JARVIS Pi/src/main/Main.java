@@ -1,33 +1,19 @@
 package main;
 
-import java.util.Calendar;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-
-import sound.MP3Player;
-import time.Date;
-import time.Time;
-import time.alarm.Alarm;
-import time.alarm.AlarmSystem;
-import jarvis.InteractorTest;
 import jarvis.interaction.Interactor;
 
 public class Main {
 
-	private static final int SECOND = 1000;
+	/*private static final int SECOND = 1000;
 	private static final int MINUTE = 60 * SECOND;
 	private static final int HOUR = 60 * MINUTE;
-	private static final int DAY = 24 * HOUR;
+	private static final int DAY = 24 * HOUR;*/
 
 	public static void main(String[] args) {
 		
 		Interactor it = new Interactor();
 		it.activate();
 		System.exit(0);
-		
-		/*InteractorTest it = new InteractorTest();
-		it.start();
-		System.exit(0);*/
 		
 		/*AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
 		as.start();
