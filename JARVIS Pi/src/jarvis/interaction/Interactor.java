@@ -1,5 +1,8 @@
 package jarvis.interaction;
 
+import java.io.IOException;
+
+import config.Configuration;
 import sphinx.SoundListener;
 import designpatterns.State;
 import freetts.TextSynthesizer;
@@ -13,9 +16,11 @@ public class Interactor implements MainContext {
 	private SoundListener listener = null;
 	private TextSynthesizer synth = null;
 	private Boolean active = false;
+	private Configuration config = null;
 
-	public Interactor() {
+	public Interactor() throws ClassNotFoundException, IOException {
 		setState(new IdleState(this));
+		config = Configuration.getInstance();
 	}
 
 	public State getState() {
@@ -72,6 +77,12 @@ public class Interactor implements MainContext {
 
 	public void deactivate() {
 		active = false;
+		try {
+			config.storeToFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.err.println("Unable to save program configurations.");
+		}
 	}
 
 	public void replyToUser(String message) throws IllegalArgumentException {
@@ -86,10 +97,8 @@ public class Interactor implements MainContext {
 	}
 
 	public String getUserName() {
-		// TODO complete with a configurations class as singleton (maybe)
-		return "sir";
+		return config.getUserName();
+		// TODO should configuration really be singleton? maybe not...
 	}
-
-
 
 }

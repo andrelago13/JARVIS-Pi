@@ -1,5 +1,7 @@
 package main;
 
+import java.io.IOException;
+
 import jarvis.interaction.Interactor;
 
 public class Main {
@@ -11,8 +13,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Interactor it = new Interactor();
-		it.activate();
+		Interactor it;
+		try {
+			it = new Interactor();
+			it.activate();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 		System.exit(0);
 		
 		/*AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
