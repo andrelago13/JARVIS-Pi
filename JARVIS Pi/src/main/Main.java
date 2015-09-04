@@ -10,6 +10,7 @@ import time.Time;
 import time.alarm.Alarm;
 import time.alarm.AlarmSystem;
 import jarvis.InteractorTest;
+import jarvis.interaction.Interactor;
 
 public class Main {
 
@@ -19,9 +20,14 @@ public class Main {
 	private static final int DAY = 24 * HOUR;
 
 	public static void main(String[] args) {
-		InteractorTest it = new InteractorTest();
-		it.start();
+		
+		Interactor it = new Interactor();
+		it.activate();
 		System.exit(0);
+		
+		/*InteractorTest it = new InteractorTest();
+		it.start();
+		System.exit(0);*/
 		
 		/*AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
 		as.start();

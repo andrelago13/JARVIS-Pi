@@ -7,7 +7,7 @@
 grammar hello;
 
 public <greet> = (good morning | good afternoon | good evening | hello | hey | hi ) jarvis | jarvis ;
-public <farewell> = ( farewell );
+public <farewell> = ( ( farewell | goodbye | bye | terminate ) jarvis ) | ( jarvis terminate );
 
 public <heisenberg> = (say my name | you're hi zen berg);
 

@@ -6,8 +6,10 @@ import sphinx.SoundListener;
 
 public class InteractorTest {
 	public void start() {
+		
 		SoundListener listener = null;
 		TextSynthesizer synth = null;
+		
 		try {
 			listener = new SoundListener();
 			synth = new TextSynthesizer();
