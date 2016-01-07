@@ -11,15 +11,21 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Configuration implements Serializable {		// SINGLETON
 
+	/*
+	 * 		APPLICATION CONSTANTS
+	 */
 	private static String defaultFilePath = "./resources/conf/";
 	private static String defaultFileName = "settings.conf";
+	private static String defaultUserName = "sir";
+	
+	/*
+	 * 		OBJECT ATTRIBUTES
+	 */
 	private String filePath;
 	private String fileName;
-
-	private static String defaultUserName = "sir";
 	private String userName;
 
-	private static Configuration instance = null;
+	protected static Configuration instance = null;
 
 	
 	protected Configuration() throws ClassNotFoundException, IOException {
@@ -71,7 +77,7 @@ public class Configuration implements Serializable {		// SINGLETON
 		}
 		file.createNewFile();
 		
-		System.out.println("Storing configs from " + fullPath);
+		System.out.println("Storing configs on " + fullPath);
 		
 		FileOutputStream fout = new FileOutputStream(file);
 		ObjectOutputStream oos = new ObjectOutputStream(fout);   

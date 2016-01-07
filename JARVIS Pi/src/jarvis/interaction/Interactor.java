@@ -4,79 +4,55 @@ import java.io.IOException;
 
 import config.Configuration;
 import sphinx.SoundListener;
-import designpatterns.State;
 import freetts.TextSynthesizer;
-import jarvis.interaction.state.MainContext;
-import jarvis.interaction.state.MainState;
+import jarvis.interaction.state.MainJarvisContext;
+import jarvis.interaction.state.MainJarvisState;
 import jarvis.interaction.state.mainstate.IdleState;
 
-public class Interactor implements MainContext {
+public class Interactor implements MainJarvisContext {
 
-	private MainState state = null;
+	private MainJarvisState state = null;
 	private SoundListener listener = null;
 	private TextSynthesizer synth = null;
-	private Boolean active = false;
 	private Configuration config = null;
 
-	public Interactor() throws ClassNotFoundException, IOException {
-		setState(new IdleState(this));
+	public Interactor() throws Exception {
+		listener = new SoundListener();
+		synth = new TextSynthesizer();
 		config = Configuration.getInstance();
 	}
 
-	public State getState() {
+	public MainJarvisState getState() {
 		return state;
 	}
 
-	public void setState(MainState state) throws IllegalArgumentException {
+	public void setState(MainJarvisState state) throws IllegalArgumentException {
 		if(state == null)
 			throw new IllegalArgumentException();
 
 		if(this.state != null)
 			this.state.deactivate();
 		this.state = state;
-		this.state.setContext(this);
 		this.state.activate();
 	}
 
-	public void setState(State state) throws IllegalArgumentException {
-		if(!(state instanceof MainState))
-			throw new IllegalArgumentException();
-
-		setState((MainState) state);
-	}
-
 	public void handle(String message) {
-		// TODO Auto-generated method stub
+		if(state != null)
+			state.handle(message);
 
 	}
 
 	public void activate() {
-		
-		active = true;
-
 		try {
-			listener = new SoundListener();
-			synth = new TextSynthesizer();
+			setState(new IdleState(this));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
 
-		startListening();
-
-	}
-
-	private void startListening() {
-		String message = "";
-		while(!message.equals("farewell") && active) {
-			message = listener.listenOnce(true);
-
-			state.handle(message);
-		}
 	}
 
 	public void deactivate() {
-		active = false;
 		try {
 			config.storeToFile();
 		} catch (IOException e) {
@@ -96,9 +72,12 @@ public class Interactor implements MainContext {
 
 	}
 
-	public String getUserName() {
-		return config.getUserName();
-		// TODO should configuration really be singleton? maybe not...
+	@Override
+	public void getUserInput() {
+		String message = "";
+		message = listener.listenOnce();
+		if(state != null)
+			state.handle(message);
 	}
 
 }

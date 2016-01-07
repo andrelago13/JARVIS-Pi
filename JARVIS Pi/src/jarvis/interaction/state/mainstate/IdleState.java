@@ -1,12 +1,19 @@
 package jarvis.interaction.state.mainstate;
 
+import java.io.IOException;
+
+import config.Configuration;
 import sound.MP3Player;
 import time.Time;
-import jarvis.interaction.state.MainContext;
-import jarvis.interaction.state.MainState;
+import jarvis.interaction.state.MainJarvisContext;
+import jarvis.interaction.state.MainJarvisState;
 
-public class IdleState implements MainState {
+public class IdleState implements MainJarvisState {
 
+	/*
+	 * 		STATE CONSTANTS
+	 * 	some of these might be later moved into text files
+	 */
 	private static String greets[] = { "good morning jarvis", "good afternoon jarvis", "good evening jarvis", "hello jarvis", "hey jarvis", "hi jarvis", "jarvis" };
 	private static String farewell[] = { "farewell jarvis", "goodbye jarvis", "bye jarvis", "terminate jarvis", "jarvis terminate" };
 
@@ -19,33 +26,38 @@ public class IdleState implements MainState {
 	private String heisenberg_file_1 = "./resources/sound/heisenberg/youre-heisenberg.mp3";
 	private String heisenberg_file_2 = "./resources/sound/heisenberg/youre-goddamn-right.mp3";
 
-	private MainContext context = null;
+	/*
+	 * 		STATE ATTRIBUTES
+	 */
+	private MainJarvisContext context = null;
+	private Configuration config = null;
 
-	public IdleState(MainContext context) throws IllegalArgumentException {
+	public IdleState(MainJarvisContext context) throws IllegalArgumentException, ClassNotFoundException, IOException {
 		setContext(context);
+		config = Configuration.getInstance();
 	}
 
-	public void activate() {}
+	public void activate() {
+		context.getUserInput();
+	}
 
 	public void deactivate() {}
 
 	public void handle(String message) {
 
 		if(isGreet(message)) {
-			context.replyToUser(currentGreetReply() + context.getUserName());
-			return;
-		}
-
-		if(isFarewell(message)) {
-			context.replyToUser(farewellReply + context.getUserName());
+			context.replyToUser(currentGreetReply() + config.getUserName());
+		} else if(isFarewell(message)) {
+			context.replyToUser(farewellReply + config.getUserName());
 			context.deactivate();
-		}
-
-		if(message.equals(heisenberg_message_1)) {
+			return;
+		} else if(message.equals(heisenberg_message_1)) {
 			MP3Player.playFileForeground(heisenberg_file_1);
 		} else if (message.equals(heisenberg_message_2)) {
 			MP3Player.playFileForeground(heisenberg_file_2);
 		}
+		
+		context.getUserInput();
 	}
 
 	private static Boolean isGreet(String message) {
@@ -86,11 +98,11 @@ public class IdleState implements MainState {
 
 	}
 
-	public MainContext getContext() {
+	public MainJarvisContext getContext() {
 		return context;
 	}
 
-	public void setContext(MainContext context) throws IllegalArgumentException {
+	public void setContext(MainJarvisContext context) throws IllegalArgumentException {
 		if(context == null) {
 			throw new IllegalArgumentException();
 		}
