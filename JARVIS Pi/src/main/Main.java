@@ -2,6 +2,7 @@ package main;
 
 import java.io.IOException;
 
+import weather.WUCondition;
 import weather.WeatherUnderground;
 import jarvis.interaction.Interactor;
 
@@ -14,8 +15,10 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
-		WeatherUnderground wu = WeatherUnderground.getCurrentWeather();
-		System.out.println(wu.getWeatherCondition());
+		WUCondition wu = WeatherUnderground.getWeatherCondition();
+		System.out.println(wu.getCity());
+		System.out.println(wu.getWeather());
+		System.out.println(wu.getTemperature());
 		
 		/*Interactor it;
 		try {
