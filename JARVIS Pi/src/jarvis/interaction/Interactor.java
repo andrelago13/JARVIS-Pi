@@ -2,7 +2,7 @@ package jarvis.interaction;
 
 import java.io.IOException;
 
-import config.Configuration;
+import configuration.Configuration;
 import sphinx.SoundListener;
 import freetts.TextSynthesizer;
 import jarvis.interaction.state.MainJarvisContext;

@@ -1,0 +1,14 @@
+/*GREET*/
+good morning jarvis
+good afternoon jarvis
+good evening jarvis
+hello jarvis
+hey jarvis
+hi jarvis
+jarvis
+/*FAREWELL*/
+farewell jarvis
+goodbye jarvis
+bye jarvis
+terminate jarvis
+jarvis terminate

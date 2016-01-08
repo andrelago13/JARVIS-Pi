@@ -1,8 +1,10 @@
 package jarvis.interaction.state.mainstate;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import config.Configuration;
+import configuration.Configuration;
+import configuration.language.TextSystem;
 import sound.MP3Player;
 import time.Time;
 import jarvis.interaction.state.MainJarvisContext;
@@ -14,12 +16,6 @@ public class IdleState implements MainJarvisState {
 	 * 		STATE CONSTANTS
 	 * 	some of these might be later moved into text files
 	 */
-	private final static String greets[] = { "good morning jarvis", "good afternoon jarvis", "good evening jarvis", "hello jarvis", "hey jarvis", "hi jarvis", "jarvis" };
-	private final static String farewell[] = { "farewell jarvis", "goodbye jarvis", "bye jarvis", "terminate jarvis", "jarvis terminate" };
-
-	private final static String greetReplies[] = { "good morning ", "good afternoon ", "good evening "};
-	private static enum greetRepliesType { MORNING, AFTERNOON, EVENING };
-	private final static String farewellReply = "goodbye ";
 	
 	private final static String heisenberg_message_1 = "say my name";
 	private final static String heisenberg_message_2 = "you're hi zen berg";
@@ -45,11 +41,12 @@ public class IdleState implements MainJarvisState {
 
 	public void handle(String message) {
 
-		if(isGreet(message)) {
+		if(TextSystem.isGreet(message)) {
 			context.replyToUser(currentGreetReply() + config.getUserName());
 			context.setState(new TriggeredState(context));
-		} else if(isFarewell(message)) {
-			context.replyToUser(farewellReply + config.getUserName());
+			return;
+		} else if(TextSystem.isFarewell(message)) {
+			context.replyToUser(TextSystem.farewellReply + config.getUserName());
 			context.deactivate();
 			return;
 		} else if(message.equals(heisenberg_message_1)) {
@@ -61,40 +58,16 @@ public class IdleState implements MainJarvisState {
 		context.getUserInput();
 	}
 
-	private static Boolean isGreet(String message) {
-
-		if(message == null) return false;
-
-		for(int i = 0; i < greets.length; i++) {
-			if(greets[i].equals(message))
-				return true;
-		}
-
-		return false;
-	}
-
-	private static Boolean isFarewell(String message) {
-
-		if(message == null) return false;
-
-		for(int i = 0; i < farewell.length; i++) {
-			if(farewell[i].equals(message))
-				return true;
-		}
-
-		return false;
-	}
-
 	private static String currentGreetReply() {
 		Time t = Time.getCurrentTime();
 		int hours = t.getHours();
 
 		if(hours >= 5 && hours <= 12) {
-			return greetReplies[greetRepliesType.MORNING.ordinal()];
+			return TextSystem.greetReplies[TextSystem.greetRepliesType.MORNING.ordinal()];
 		} else if(hours >= 13 && hours <= 20) {
-			return greetReplies[greetRepliesType.AFTERNOON.ordinal()];
+			return TextSystem.greetReplies[TextSystem.greetRepliesType.AFTERNOON.ordinal()];
 		} else {
-			return greetReplies[greetRepliesType.EVENING.ordinal()];
+			return TextSystem.greetReplies[TextSystem.greetRepliesType.EVENING.ordinal()];
 		}
 
 	}

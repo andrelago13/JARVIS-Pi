@@ -4,15 +4,16 @@ import java.io.IOException;
 
 import weather.WUCondition;
 import weather.WeatherUnderground;
-import config.Configuration;
+import configuration.Configuration;
+import configuration.language.TextSystem;
 import jarvis.interaction.state.MainJarvisContext;
 import jarvis.interaction.state.MainJarvisState;
 
 public class TriggeredState implements MainJarvisState {
-	
+
 	private MainJarvisContext context;
 	private Configuration config;
-	
+
 	public TriggeredState(MainJarvisContext context) {
 		setContext(context);
 		try {
@@ -47,12 +48,15 @@ public class TriggeredState implements MainJarvisState {
 	@Override
 	public void handle(String message) {
 		// TODO Auto-generated method stub
-		if(message.equals("goodbye jarvis"))
+		if(TextSystem.isFarewell(message)) {
+			context.replyToUser(TextSystem.farewellReply + config.getUserName());
 			context.deactivate();
-		
+			return;
+		}
+
 		context.getUserInput();
 	}
-	
-	
+
+
 
 }
