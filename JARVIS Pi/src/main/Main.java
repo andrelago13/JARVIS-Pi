@@ -2,6 +2,7 @@ package main;
 
 import java.io.IOException;
 
+import weather.WeatherUnderground;
 import jarvis.interaction.Interactor;
 
 public class Main {
@@ -13,7 +14,10 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
-		Interactor it;
+		WeatherUnderground wu = WeatherUnderground.getCurrentWeather();
+		System.out.println(wu.getWeatherCondition());
+		
+		/*Interactor it;
 		try {
 			it = new Interactor();
 			it.activate();
@@ -21,7 +25,7 @@ public class Main {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		System.exit(0);
+		System.exit(0);*/
 		
 		/*AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
 		as.start();

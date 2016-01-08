@@ -15,5 +15,7 @@
 	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/freetts-jsapi10.jar"/>
 	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/mbrola.jar"/>
 	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/MP3 Player/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/commons-io-2.4/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/JSON/json-20151123.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

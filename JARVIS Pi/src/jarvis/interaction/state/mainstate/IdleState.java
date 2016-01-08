@@ -14,17 +14,17 @@ public class IdleState implements MainJarvisState {
 	 * 		STATE CONSTANTS
 	 * 	some of these might be later moved into text files
 	 */
-	private static String greets[] = { "good morning jarvis", "good afternoon jarvis", "good evening jarvis", "hello jarvis", "hey jarvis", "hi jarvis", "jarvis" };
-	private static String farewell[] = { "farewell jarvis", "goodbye jarvis", "bye jarvis", "terminate jarvis", "jarvis terminate" };
+	private final static String greets[] = { "good morning jarvis", "good afternoon jarvis", "good evening jarvis", "hello jarvis", "hey jarvis", "hi jarvis", "jarvis" };
+	private final static String farewell[] = { "farewell jarvis", "goodbye jarvis", "bye jarvis", "terminate jarvis", "jarvis terminate" };
 
-	private static String greetReplies[] = { "good morning ", "good afternoon ", "good evening "};
+	private final static String greetReplies[] = { "good morning ", "good afternoon ", "good evening "};
 	private static enum greetRepliesType { MORNING, AFTERNOON, EVENING };
-	private static String farewellReply = "goodbye ";
+	private final static String farewellReply = "goodbye ";
 	
-	private String heisenberg_message_1 = "say my name";
-	private String heisenberg_message_2 = "you're hi zen berg";
-	private String heisenberg_file_1 = "./resources/sound/heisenberg/youre-heisenberg.mp3";
-	private String heisenberg_file_2 = "./resources/sound/heisenberg/youre-goddamn-right.mp3";
+	private final static String heisenberg_message_1 = "say my name";
+	private final static String heisenberg_message_2 = "you're hi zen berg";
+	private final static String heisenberg_file_1 = "./resources/sound/heisenberg/youre-heisenberg.mp3";
+	private final static String heisenberg_file_2 = "./resources/sound/heisenberg/youre-goddamn-right.mp3";
 
 	/*
 	 * 		STATE ATTRIBUTES
