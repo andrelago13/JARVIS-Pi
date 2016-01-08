@@ -47,6 +47,7 @@ public class IdleState implements MainJarvisState {
 
 		if(isGreet(message)) {
 			context.replyToUser(currentGreetReply() + config.getUserName());
+			context.setState(new TriggeredState(context));
 		} else if(isFarewell(message)) {
 			context.replyToUser(farewellReply + config.getUserName());
 			context.deactivate();
