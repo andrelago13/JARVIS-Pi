@@ -16,3 +16,5 @@ public <digit> = (one | two | three | four | five | six | seven | eight | nine);
 public <tenths> = (twenty | thirty | forty | fifty | sixty | seventy | eighty | ninety);
 public <tenToNineteen> = (ten | eleven | twelve | thirteen | fourteen | fifteen | sixteen | seventeen | eighteen | nineteen);
 public <number> = (<zero> | <digit> | <tenToNineteen> | <tenths> | <tenths> <digit>);
+
+public <weather_current> = ( what's today's weather | what's the weather like | how's the weather | is it raining | is it sunny );

@@ -12,3 +12,9 @@ goodbye jarvis
 bye jarvis
 terminate jarvis
 jarvis terminate
+/*WEATHER_CURRENT*/
+what's today's weather
+what's the weather like
+how's the weather
+is it raining
+is it sunny

@@ -16,12 +16,16 @@ public class TextSystem {
 	 */
 	
 	private final static String defaultFilePath = "lang/";	// RELATIVE TO CONFIGURATION
-	private final static String defaultGreetFarewellFile = "greet-farewell.txt";
+	private final static String defaultGreetFarewellFile = "text-system.txt";
 	
 	private static ArrayList<String> greets = new ArrayList<String>(Arrays.asList("good morning jarvis", "good afternoon jarvis", "good evening jarvis", "hello jarvis", "hey jarvis", "hi jarvis", "jarvis" ));
 	private static ArrayList<String> farewell = new ArrayList<String>(Arrays.asList("farewell jarvis", "goodbye jarvis", "bye jarvis", "terminate jarvis", "jarvis terminate" ));
+	private static ArrayList<String> weather_current = new ArrayList<String>(Arrays.asList( "what's today's weather", "what's the weather like", "how's the weather", "is it raining", "is it sunny" ));
 	private final static String greets_trigger = "/*GREET*/";
 	private final static String farewell_trigger = "/*FAREWELL*/";
+	private final static String weather_current_trigger = "/*WEATHER_CURRENT*/";
+	private final static String triggers[] = {greets_trigger, farewell_trigger, weather_current_trigger};
+	private final static Object lists[] = { greets, farewell, weather_current };
 
 	public final static String greetReplies[] = { "good morning ", "good afternoon ", "good evening "};
 	public static enum greetRepliesType { MORNING, AFTERNOON, EVENING };
@@ -36,23 +40,31 @@ public class TextSystem {
 	private static void initiateGreetFarewell() {
 		try {
 			Configuration config = Configuration.getInstance();
-			ArrayList<String> greets_temp = new ArrayList<String>();
-			ArrayList<String> farewell_temp = new ArrayList<String>();
-			ArrayList<String> destination = greets_temp;
+			int curr_index = 0;
+			ArrayList<String> temp = new ArrayList<String>();
+			
 			for (String line : Files.readAllLines(Paths.get(config.getFilePath() + defaultFilePath + defaultGreetFarewellFile))) {
-				if(line.equals(greets_trigger)) {
-					destination = greets_temp;
-					continue;
-				} else if (line.equals(farewell_trigger)) {
-					destination = farewell_temp;
-					continue;
+				if(line.charAt(0) == '/' && temp.size() > 0) {	// found end of section
+					lists[curr_index] = (ArrayList<String>) temp.clone();
+					temp.clear();
 				}
 				
-				destination.add(line);
+				int new_index = 0;
+				
+				for(; new_index < triggers.length; ++new_index) {
+					if(triggers[new_index].equals(line)) {
+						curr_index = new_index;
+						break;
+					}
+				}
+				
+				if(new_index < triggers.length)
+					continue;
+				
+				temp.add(line);
 			}
+			lists[curr_index] = (ArrayList<String>) temp.clone();
 			
-			greets = (ArrayList<String>) greets_temp.clone();
-			farewell = (ArrayList<String>) farewell_temp.clone();			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
