@@ -6,6 +6,7 @@ import weather.WUCondition;
 import weather.WeatherUnderground;
 import configuration.Configuration;
 import configuration.language.TextSystem;
+import jarvis.engine.JarvisWeather;
 import jarvis.interaction.state.MainJarvisContext;
 import jarvis.interaction.state.MainJarvisState;
 
@@ -47,11 +48,15 @@ public class TriggeredState implements MainJarvisState {
 
 	@Override
 	public void handle(String message) {
-		// TODO Auto-generated method stub
 		if(TextSystem.isFarewell(message)) {
 			context.replyToUser(TextSystem.farewellReply + config.getUserName());
 			context.deactivate();
 			return;
+		}
+		
+		String weatherReply = JarvisWeather.replyTo(message);
+		if(weatherReply != null) {
+			context.replyToUser(weatherReply);
 		}
 
 		context.getUserInput();

@@ -31,6 +31,11 @@ public class TextSystem {
 	public static enum greetRepliesType { MORNING, AFTERNOON, EVENING };
 	public final static String farewellReply = "goodbye ";
 	
+	private final static String weatherConditionReply_1 = "Current weather in ";
+	private final static String weatherConditionReply_2 = " is ";
+	private final static String weatherConditionReply_3 = " with a temperature of ";
+	private final static String weatherConditionReply_4 = " Celsius degrees.";
+	
 	public static void initiate() {
 		initiateGreetFarewell();
 		// INITIATE OTHER SUBSYSTEMS HERE
@@ -80,25 +85,23 @@ public class TextSystem {
 		return farewell;
 	}
 	
+	public static final ArrayList<String> getWeatherCondition() {
+		return weather_current;
+	}
+	
 	public static final Boolean isGreet(String message) {
-		if(message == null) return false;
-
-		for(int i = 0; i < greets.size(); i++) {
-			if(greets.get(i).equals(message))
-				return true;
-		}
-
-		return false;
+		return greets.contains(message);
 	}
 
 	public static final Boolean isFarewell(String message) {
-		if(message == null) return false;
+		return farewell.contains(message);
+	}
 
-		for(int i = 0; i < farewell.size(); i++) {
-			if(farewell.get(i).equals(message))
-				return true;
-		}
+	public static boolean isWeatherCondition(String message) {
+		return weather_current.contains(message);
+	}
 
-		return false;
+	public static String weatherConditionMessage(String city, String weather, double temperatureCelsius) {
+		return weatherConditionReply_1 + city + weatherConditionReply_2 + weather + weatherConditionReply_3 + temperatureCelsius + weatherConditionReply_4;
 	}
 }
