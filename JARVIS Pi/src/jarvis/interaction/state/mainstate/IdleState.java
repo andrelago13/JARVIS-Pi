@@ -5,20 +5,11 @@ import java.io.IOException;
 import configuration.Configuration;
 import configuration.language.TextSystem;
 import sound.MP3Player;
+import jarvis.easter_eggs.EasterEggSystem;
 import jarvis.interaction.state.MainJarvisContext;
 import jarvis.interaction.state.MainJarvisState;
 
 public class IdleState implements MainJarvisState {
-
-	/*
-	 * 		STATE CONSTANTS
-	 * 	some of these might be later moved into text files
-	 */
-	
-	private final static String heisenberg_message_1 = "say my name";
-	private final static String heisenberg_message_2 = "you're hi zen berg";
-	private final static String heisenberg_file_1 = "./resources/sound/heisenberg/youre-heisenberg.mp3";
-	private final static String heisenberg_file_2 = "./resources/sound/heisenberg/youre-goddamn-right.mp3";
 
 	/*
 	 * 		STATE ATTRIBUTES
@@ -33,14 +24,14 @@ public class IdleState implements MainJarvisState {
 	}
 
 	public void activate() {
-		if(active)
+		if(isActive())
 			return;
 		
 		active = true;
 	}
 
 	public void deactivate() {
-		if(!active)
+		if(!isActive())
 			return;
 		
 		active = false;
@@ -66,10 +57,6 @@ public class IdleState implements MainJarvisState {
 			context.replyToUser(TextSystem.getFarewellReply() + config.getUserName());
 			context.deactivate();
 			return;
-		} else if(message.equals(heisenberg_message_1)) {
-			MP3Player.playFileForeground(heisenberg_file_1);
-		} else if (message.equals(heisenberg_message_2)) {
-			MP3Player.playFileForeground(heisenberg_file_2);
 		}
 	}
 
