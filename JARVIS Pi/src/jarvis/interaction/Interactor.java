@@ -15,11 +15,13 @@ public class Interactor implements MainJarvisContext {
 	private SoundListener listener = null;
 	private TextSynthesizer synth = null;
 	private Configuration config = null;
+	private Boolean active = false;
 
 	public Interactor() throws Exception {
 		listener = new SoundListener();
 		synth = new TextSynthesizer();
 		config = Configuration.getInstance();
+		setState(new IdleState(this));
 	}
 
 	public MainJarvisState getState() {
@@ -33,27 +35,38 @@ public class Interactor implements MainJarvisContext {
 		if(this.state != null)
 			this.state.deactivate();
 		this.state = state;
-		this.state.activate();
 	}
 
 	public void handle(String message) {
+		if(!isActive())
+			return;
+		
 		if(state != null)
 			state.handle(message);
 
 	}
+	
+	public void execute() {
+		while(isActive()) {
+			this.state.execute();
+		}
+	}
 
 	public void activate() {
-		try {
-			setState(new IdleState(this));
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-
+		if(isActive())
+			return;
+		
+		active = true;
+		this.state.activate();
 	}
 
 	public void deactivate() {
+		if(!isActive())
+			return;
+		
+		active = false;
 		try {
+			state.deactivate();
 			config.storeToFile();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -78,6 +91,15 @@ public class Interactor implements MainJarvisContext {
 		message = listener.listenOnce();
 		if(state != null)
 			state.handle(message);
+	}
+
+	public Boolean isActive() {
+		return active;
+	}
+
+	public void run() {
+		activate();
+		execute();
 	}
 
 }

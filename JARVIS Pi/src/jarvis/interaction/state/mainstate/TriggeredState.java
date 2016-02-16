@@ -14,6 +14,7 @@ public class TriggeredState implements MainJarvisState {
 
 	private MainJarvisContext context;
 	private Configuration config;
+	private Boolean active = false;
 
 	public TriggeredState(MainJarvisContext context) {
 		setContext(context);
@@ -30,11 +31,19 @@ public class TriggeredState implements MainJarvisState {
 
 	@Override
 	public void activate() {
-		context.getUserInput();
+		if(isActive())
+			return;
+		
+		active = true;
 	}
 
 	@Override
-	public void deactivate() {}
+	public void deactivate() {
+		if(!isActive())
+			return;
+		
+		active = false;
+	}
 
 	@Override
 	public MainJarvisContext getContext() {
@@ -58,8 +67,16 @@ public class TriggeredState implements MainJarvisState {
 		if(weatherReply != null) {
 			context.replyToUser(weatherReply);
 		}
+	}
 
+	@Override
+	public void execute() {
 		context.getUserInput();
+	}
+
+	@Override
+	public Boolean isActive() {
+		return active;
 	}
 
 

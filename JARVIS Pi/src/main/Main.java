@@ -18,7 +18,7 @@ public class Main {
 		Interactor it;
 		try {
 			it = new Interactor();
-			it.activate();
+			it.run();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 			System.exit(1);

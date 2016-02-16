@@ -27,6 +27,7 @@ public class IdleState implements MainJarvisState {
 	 */
 	private MainJarvisContext context = null;
 	private Configuration config = null;
+	private Boolean active = false;
 
 	public IdleState(MainJarvisContext context) throws IllegalArgumentException, ClassNotFoundException, IOException {
 		setContext(context);
@@ -34,10 +35,29 @@ public class IdleState implements MainJarvisState {
 	}
 
 	public void activate() {
-		context.getUserInput();
+		if(active)
+			return;
+		
+		active = true;
 	}
 
-	public void deactivate() {}
+	public void deactivate() {
+		if(!active)
+			return;
+		
+		active = false;
+	}
+	
+	public Boolean isActive() {
+		return active;
+	}
+	
+	public void execute() {
+		if(!isActive())
+			return;
+		
+		context.getUserInput();
+	}
 
 	public void handle(String message) {
 
@@ -54,8 +74,6 @@ public class IdleState implements MainJarvisState {
 		} else if (message.equals(heisenberg_message_2)) {
 			MP3Player.playFileForeground(heisenberg_file_2);
 		}
-		
-		context.getUserInput();
 	}
 
 	private static String currentGreetReply() {
