@@ -2,8 +2,7 @@ package jarvis.interaction.state.mainstate;
 
 import java.io.IOException;
 
-import weather.WUCondition;
-import weather.WeatherUnderground;
+import sound.MP3Player;
 import configuration.Configuration;
 import configuration.language.TextSystem;
 import jarvis.engine.JarvisWeather;
@@ -55,11 +54,18 @@ public class TriggeredState implements MainJarvisState {
 
 	@Override
 	public void handle(String message) {
-		if(TextSystem.isFarewell(message)) {
-			context.replyToUser(TextSystem.farewellReply + config.getUserName());
+		if(TextSystem.isGreet(message)) {
+			context.replyToUser(TextSystem.getRandomAlreadyHere());
+			return;
+		} else if(TextSystem.isFarewell(message)) {
+			context.replyToUser(TextSystem.getFarewellReply() + config.getUserName());
 			context.deactivate();
 			return;
-		}
+		}/* else if(message.equals(heisenberg_message_1)) {
+			MP3Player.playFileForeground(heisenberg_file_1);
+		} else if (message.equals(heisenberg_message_2)) {
+			MP3Player.playFileForeground(heisenberg_file_2);
+		}*/
 		
 		String weatherReply = JarvisWeather.replyTo(message);
 		if(weatherReply != null) {

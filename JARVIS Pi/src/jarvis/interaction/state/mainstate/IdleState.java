@@ -1,12 +1,10 @@
 package jarvis.interaction.state.mainstate;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import configuration.Configuration;
 import configuration.language.TextSystem;
 import sound.MP3Player;
-import time.Time;
 import jarvis.interaction.state.MainJarvisContext;
 import jarvis.interaction.state.MainJarvisState;
 
@@ -60,13 +58,12 @@ public class IdleState implements MainJarvisState {
 	}
 
 	public void handle(String message) {
-
 		if(TextSystem.isGreet(message)) {
 			context.replyToUser(TextSystem.currentGreetReply() + config.getUserName());
 			context.setState(new TriggeredState(context));
 			return;
 		} else if(TextSystem.isFarewell(message)) {
-			context.replyToUser(TextSystem.farewellReply + config.getUserName());
+			context.replyToUser(TextSystem.getFarewellReply() + config.getUserName());
 			context.deactivate();
 			return;
 		} else if(message.equals(heisenberg_message_1)) {
