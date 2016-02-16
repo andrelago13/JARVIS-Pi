@@ -2,7 +2,6 @@ package jarvis.interaction.state.mainstate;
 
 import java.io.IOException;
 
-import sound.MP3Player;
 import configuration.Configuration;
 import configuration.language.TextSystem;
 import jarvis.easter_eggs.EasterEggSystem;
