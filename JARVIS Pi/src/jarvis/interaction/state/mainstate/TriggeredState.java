@@ -21,10 +21,8 @@ public class TriggeredState implements MainJarvisState {
 		try {
 			config = Configuration.getInstance();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

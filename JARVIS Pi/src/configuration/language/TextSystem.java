@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import time.Time;
 import configuration.Configuration;
 
 public class TextSystem {
@@ -103,5 +104,18 @@ public class TextSystem {
 
 	public static String weatherConditionMessage(String city, String weather, double temperatureCelsius) {
 		return weatherConditionReply_1 + city + weatherConditionReply_2 + weather + weatherConditionReply_3 + temperatureCelsius + weatherConditionReply_4;
+	}
+	
+	public static String currentGreetReply() {
+		Time t = Time.getCurrentTime();
+		int hours = t.getHours();
+
+		if(hours >= 5 && hours <= 12) {
+			return greetReplies[greetRepliesType.MORNING.ordinal()];
+		} else if(hours >= 13 && hours <= 20) {
+			return greetReplies[greetRepliesType.AFTERNOON.ordinal()];
+		} else {
+			return greetReplies[greetRepliesType.EVENING.ordinal()];
+		}
 	}
 }

@@ -62,7 +62,7 @@ public class IdleState implements MainJarvisState {
 	public void handle(String message) {
 
 		if(TextSystem.isGreet(message)) {
-			context.replyToUser(currentGreetReply() + config.getUserName());
+			context.replyToUser(TextSystem.currentGreetReply() + config.getUserName());
 			context.setState(new TriggeredState(context));
 			return;
 		} else if(TextSystem.isFarewell(message)) {
@@ -74,20 +74,6 @@ public class IdleState implements MainJarvisState {
 		} else if (message.equals(heisenberg_message_2)) {
 			MP3Player.playFileForeground(heisenberg_file_2);
 		}
-	}
-
-	private static String currentGreetReply() {
-		Time t = Time.getCurrentTime();
-		int hours = t.getHours();
-
-		if(hours >= 5 && hours <= 12) {
-			return TextSystem.greetReplies[TextSystem.greetRepliesType.MORNING.ordinal()];
-		} else if(hours >= 13 && hours <= 20) {
-			return TextSystem.greetReplies[TextSystem.greetRepliesType.AFTERNOON.ordinal()];
-		} else {
-			return TextSystem.greetReplies[TextSystem.greetRepliesType.EVENING.ordinal()];
-		}
-
 	}
 
 	public MainJarvisContext getContext() {
