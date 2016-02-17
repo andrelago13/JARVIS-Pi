@@ -32,6 +32,8 @@ public class TriggeredState implements MainJarvisState {
 			return;
 		
 		active = true;
+		
+		// TODO start timer thread
 	}
 
 	@Override
@@ -83,7 +85,5 @@ public class TriggeredState implements MainJarvisState {
 	public Boolean isActive() {
 		return active;
 	}
-
-
 
 }
