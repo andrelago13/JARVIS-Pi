@@ -123,7 +123,7 @@ public class TextSystem {
 	@SuppressWarnings("unchecked")
 	public static final String getRandomAlreadyHere() {
 		Random rn = new Random();
-		int index = rn.nextInt() % ((ArrayList<String>) output_lists[already_here_index]).size();
+		int index = rn.nextInt(((ArrayList<String>) output_lists[already_here_index]).size());
 		
 		if(((ArrayList<String>)output_lists[already_here_index]).get(index).contains("USER")) {
 			try {

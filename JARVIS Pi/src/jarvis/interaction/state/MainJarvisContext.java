@@ -10,7 +10,7 @@ public interface MainJarvisContext extends Context {
 	public void replyToUser(String message);
 	public MainJarvisState getState();
 	public void setState(MainJarvisState state);
-	public void getUserInput();
+	public String getUserInput();
 	public Boolean isActive();
 	public void run();
 

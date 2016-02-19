@@ -1,6 +1,7 @@
 package jarvis.interaction;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import configuration.Configuration;
 import sphinx.SoundListener;
@@ -35,6 +36,8 @@ public class Interactor implements MainJarvisContext {
 		if(this.state != null)
 			this.state.deactivate();
 		this.state = state;
+		if(active)
+			this.state.activate();
 	}
 
 	public void handle(String message) {
@@ -86,11 +89,12 @@ public class Interactor implements MainJarvisContext {
 	}
 
 	@Override
-	public void getUserInput() {
+	public String getUserInput() {
+		System.out.println("Waiting...");
 		String message = "";
 		message = listener.listenOnce();
-		if(state != null)
-			state.handle(message);
+		System.out.println("Read: " + message);
+		return message;
 	}
 
 	public Boolean isActive() {

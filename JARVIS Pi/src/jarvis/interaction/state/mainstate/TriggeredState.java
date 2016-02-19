@@ -8,12 +8,16 @@ import jarvis.easter_eggs.EasterEggSystem;
 import jarvis.engine.JarvisWeather;
 import jarvis.interaction.state.MainJarvisContext;
 import jarvis.interaction.state.MainJarvisState;
+import jarvis.interaction.state.MainJarvisState_TimeoutManager;
 
 public class TriggeredState implements MainJarvisState {
+	
+	private static final int default_timeout = 10 * 1000;	// 10 seconds
 
 	private MainJarvisContext context;
 	private Configuration config;
 	private Boolean active = false;
+	private MainJarvisState_TimeoutManager timeout_thread = null;
 
 	public TriggeredState(MainJarvisContext context) {
 		setContext(context);
@@ -33,7 +37,14 @@ public class TriggeredState implements MainJarvisState {
 		
 		active = true;
 		
-		// TODO start timer thread
+		try {
+			timeout_thread = new MainJarvisState_TimeoutManager(getContext(), this, default_timeout, new IdleState(getContext()));
+		} catch (IllegalArgumentException | ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+
+		if(timeout_thread != null)
+			timeout_thread.start();
 	}
 
 	@Override
@@ -65,6 +76,7 @@ public class TriggeredState implements MainJarvisState {
 			return;
 		} else if(EasterEggSystem.isEasterEgg(message)) {
 			EasterEggSystem.makeEasterEgg(message, getContext());
+			return;
 		}
 		
 		String weatherReply = JarvisWeather.replyTo(message);
@@ -78,7 +90,7 @@ public class TriggeredState implements MainJarvisState {
 		if(!isActive())
 			return;
 		
-		context.getUserInput();
+		handle(context.getUserInput());
 	}
 
 	@Override

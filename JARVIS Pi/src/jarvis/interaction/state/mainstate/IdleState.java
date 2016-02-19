@@ -43,7 +43,7 @@ public class IdleState implements MainJarvisState {
 		if(!isActive())
 			return;
 		
-		context.getUserInput();
+		handle(context.getUserInput());
 	}
 
 	public void handle(String message) {

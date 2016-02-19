@@ -18,14 +18,16 @@ public class MainJarvisState_TimeoutManager extends Thread {
     	if(prev_state == null)
     		return;
     	
-        try {
+    	try {
 			Thread.sleep(timeout_milis);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
         
-        prev_state.deactivate();
-        if(next_state != null && context != null)
+    	if(!prev_state.isActive())
+    		return;
+        if(next_state != null && context != null) {
         	context.setState(next_state);
+        }
     }
 }
