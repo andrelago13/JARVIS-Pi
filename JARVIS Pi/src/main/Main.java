@@ -2,7 +2,9 @@ package main;
 
 import java.io.IOException;
 
+import configuration.language.TextSystem;
 import weather.WUCondition;
+import weather.WUForecast;
 import weather.WeatherUnderground;
 import jarvis.interaction.Interactor;
 
@@ -15,7 +17,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
-		/*Interactor it;
+		Interactor it;
 		try {
 			it = new Interactor();
 			it.run();
@@ -23,9 +25,7 @@ public class Main {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		System.exit(0);*/
-		
-		System.out.println(WeatherUnderground.getWeatherForecast().tomorrowConditionResumed());
+		System.exit(0);
 		
 		/*AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
 		as.start();

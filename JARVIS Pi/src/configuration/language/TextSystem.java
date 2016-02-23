@@ -45,6 +45,12 @@ public class TextSystem {
 	private final static String weatherConditionReply_3 = " with a temperature of ";
 	private final static String weatherConditionReply_4 = " Celsius degrees.";
 	
+	private final static String weatherForecastReply_1 = "The predicted condition for tomorrow is";
+	private final static String weatherForecastReply_2 = " with temperatures between ";
+	private final static String weatherForecastReply_3 = " and ";
+	private final static String weatherForecastReply_4 = " celsius degrees. Probability of rain is ";
+	private final static String weatherForecastReply_5 = " percent.";
+	
 	public static void initiate() {
 		initiateUserInput();
 		initiateUserOutput();
@@ -160,6 +166,10 @@ public class TextSystem {
 
 	public static String weatherConditionMessage(String city, String weather, double temperatureCelsius) {
 		return weatherConditionReply_1 + city + weatherConditionReply_2 + weather + weatherConditionReply_3 + temperatureCelsius + weatherConditionReply_4;
+	}
+	
+	public static String weatherForecastMessage(String condition, int minCelsius, int maxCelsius, int rainProbability) {
+		return weatherForecastReply_1 + condition + weatherForecastReply_2 + minCelsius + weatherForecastReply_3 + maxCelsius + weatherForecastReply_4 + rainProbability + weatherForecastReply_5;
 	}
 	
 	public static String currentGreetReply() {

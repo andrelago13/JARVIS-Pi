@@ -1,35 +1,74 @@
 package weather;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class WUForecast {
 
 	private JSONObject forecast = null;
-	
+
 	public WUForecast(JSONObject forecast_json) {
 		setForecast(forecast_json);
 	}
-	
+
 	public void setForecast(JSONObject forecast_json) {
 		forecast = forecast_json;
 	}
-	
+
 	public JSONObject getForecast() {
 		return forecast;
 	}
-	
-	public String tomorrowConditionResumed() {
-		return tomorrowForecastJSON().getString("fcttext_metric").toString();
+
+	public String tomorrowConditionCompact() {
+		return tomorrowForecastCompactJSON().getString("fcttext_metric").toString();
 	}
-	
-	private JSONObject tomorrowForecastJSON() {
-		JSONObject forecasts = allForecasts();
+
+	private JSONObject tomorrowForecastCompactJSON() {
+		JSONObject forecasts = allForecastsCompact();
 		return forecasts.getJSONObject("txt_forecast").getJSONArray("forecastday").getJSONObject(2);
 	}
-	
-	private JSONObject allForecasts() {
+
+	private JSONObject allForecastsCompact() {
 		return forecast.getJSONObject("forecast");
 	}
+	
+	public int tomorrowHighCelsius() {
+		return getHighCelsius(allForecastsDetailedJSON());
+	}
+	
+	public int tomorrowLowCelsius() {
+		return getLowCelsius(allForecastsDetailedJSON());
+	}
+	
+	public int tomorrowRainProbability() {
+		return getRainProbability(allForecastsDetailedJSON());
+	}
+	
+	public String tomorrowCondition() {
+		return getCondition(allForecastsDetailedJSON());
+	}
+
+	private JSONArray allForecastsDetailedJSON() {
+		return forecast.getJSONObject("forecast").getJSONObject("simpleforecast").getJSONArray("forecastday");
+	}
+
+	private static int getHighCelsius(JSONArray simpleforecast) {
+		return Integer.parseInt(simpleforecast.getJSONObject(1).getJSONObject("high").getString("celsius"));
+	}
+
+	private static int getLowCelsius(JSONArray simpleforecast) {
+		return Integer.parseInt(simpleforecast.getJSONObject(1).getJSONObject("low").getString("celsius"));
+	}
+
+	private static int getRainProbability(JSONArray simpleforecast) {
+		return simpleforecast.getJSONObject(1).getInt("pop");
+	}
+
+	private static String getCondition(JSONArray simpleforecast) {
+		return simpleforecast.getJSONObject(1).getString("conditions");
+	}
+
+
 
 }
 
@@ -430,4 +469,4 @@ public class WUForecast {
 		}
 	}
 }
-*/
+ */
