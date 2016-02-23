@@ -15,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
-		Interactor it;
+		/*Interactor it;
 		try {
 			it = new Interactor();
 			it.run();
@@ -23,7 +23,9 @@ public class Main {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		System.exit(0);
+		System.exit(0);*/
+		
+		System.out.println(WeatherUnderground.getWeatherForecast().tomorrowConditionResumed());
 		
 		/*AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
 		as.start();

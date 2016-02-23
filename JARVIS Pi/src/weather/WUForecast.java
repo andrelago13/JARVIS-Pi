@@ -17,6 +17,19 @@ public class WUForecast {
 	public JSONObject getForecast() {
 		return forecast;
 	}
+	
+	public String tomorrowConditionResumed() {
+		return tomorrowForecastJSON().getString("fcttext_metric").toString();
+	}
+	
+	private JSONObject tomorrowForecastJSON() {
+		JSONObject forecasts = allForecasts();
+		return forecasts.getJSONObject("txt_forecast").getJSONArray("forecastday").getJSONObject(2);
+	}
+	
+	private JSONObject allForecasts() {
+		return forecast.getJSONObject("forecast");
+	}
 
 }
 
