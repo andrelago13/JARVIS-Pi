@@ -51,6 +51,19 @@ public class Date implements Comparable<Date> {
 		return time.compareTo(o.time);
 	}
 	
+	public int compareToDateOnly(Date o) {
+		if(year < o.year) return -1;
+		else if(year > o.year) return 1;
+		
+		if(month < o.month) return -1;
+		else if(month > o.month) return 1;
+		
+		if(day < o.day) return -1;
+		else if(day > o.day) return 1;
+		
+		return 0;
+	}
+	
 	public Boolean validDate(int year, int month, int day) {
 		
 		if(year < minYear || year > maxYear || month < minMonth || month > maxMonth || day < minDay)

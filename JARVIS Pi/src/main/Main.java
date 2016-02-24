@@ -3,6 +3,7 @@ package main;
 import java.io.IOException;
 
 import configuration.language.TextSystem;
+import time.Time;
 import weather.WUCondition;
 import weather.WUForecast;
 import weather.WeatherUnderground;
