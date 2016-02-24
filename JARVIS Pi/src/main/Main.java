@@ -18,6 +18,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
+		//*	UNCOMMENT FIRST '/' TO DISABLE JARVIS
 		Interactor it;
 		try {
 			it = new Interactor();
@@ -27,6 +28,7 @@ public class Main {
 			System.exit(1);
 		}
 		System.exit(0);
+		//*/
 		
 		/*AlarmSystem as = (AlarmSystem) AlarmSystem.getInstance();
 		as.start();
