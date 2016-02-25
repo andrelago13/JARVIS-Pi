@@ -26,10 +26,10 @@ Please remember to keep this information private, and thank you for your coopera
 Functionality already implemented:
 * Voice recognition and text synthesizer libraries integrated with custom classes, allowing easy voice recognition results analysis and user response with synthesizer
 * State Machine to make it possible to easily add new functionality
-* Telling the current weather condition
+* Telling the current weather condition and the following day's forecast
 * TextSystem to easily add new text messages (both from and to the user)
 
 Libraries in use:
 * [Sphynx](https://github.com/cmusphinx/sphinx4) - voice recongnition
 * [FreeTTS](http://freetts.sourceforge.net/docs/index.php) - text synthesizer
-* [Weather Underground](http://portuguese.wunderground.com/weather/api/) - current weather condition (in the future, weather forecast)
+* [Weather Underground](http://portuguese.wunderground.com/weather/api/) - current weather condition and forecast
