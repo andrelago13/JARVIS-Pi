@@ -71,7 +71,7 @@ public class TriggeredState implements MainJarvisState {
 			context.replyToUser(TextSystem.getRandomAlreadyHere());
 			return;
 		} else if(TextSystem.isFarewell(message)) {
-			context.replyToUser(TextSystem.getFarewellReply() + config.getUserName());
+			context.replyToUser(TextSystem.getFarewellReply(config));
 			context.deactivate();
 			return;
 		} else if(EasterEggSystem.isEasterEgg(message)) {

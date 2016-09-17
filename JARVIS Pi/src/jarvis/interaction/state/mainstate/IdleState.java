@@ -48,11 +48,11 @@ public class IdleState implements MainJarvisState {
 
 	public void handle(String message) {
 		if(TextSystem.isGreet(message)) {
-			context.replyToUser(TextSystem.currentGreetReply() + config.getUserName());
+			context.replyToUser(TextSystem.currentGreetReply(config));
 			context.setState(new TriggeredState(context));
 			return;
 		} else if(TextSystem.isFarewell(message)) {
-			context.replyToUser(TextSystem.getFarewellReply() + config.getUserName());
+			context.replyToUser(TextSystem.getFarewellReply(config));
 			context.deactivate();
 			return;
 		}

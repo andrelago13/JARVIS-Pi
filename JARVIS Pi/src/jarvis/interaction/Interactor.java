@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import configuration.Configuration;
+import configuration.language.TextSystem;
 import sphinx.SoundListener;
 import freetts.TextSynthesizer;
 import jarvis.interaction.state.MainJarvisContext;
@@ -58,8 +59,9 @@ public class Interactor implements MainJarvisContext {
 	public void activate() {
 		if(isActive())
 			return;
-		
+
 		active = true;
+		TextSystem.initiate();
 		this.state.activate();
 	}
 
@@ -69,7 +71,9 @@ public class Interactor implements MainJarvisContext {
 		
 		active = false;
 		try {
-			state.deactivate();
+			if(state != null) {
+				state.deactivate();
+			}
 			config.storeToFile();
 		} catch (IOException e) {
 			e.printStackTrace();

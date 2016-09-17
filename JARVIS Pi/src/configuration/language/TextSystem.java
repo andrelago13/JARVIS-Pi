@@ -24,16 +24,14 @@ public class TextSystem {
 	private final static String farewell_trigger = "/*FAREWELL*/";
 	private final static String weather_current_trigger = "/*WEATHER_CURRENT*/";
 	private final static String input_triggers[] = {greets_trigger, farewell_trigger, weather_current_trigger};
-	private final static Object input_lists[] = { new ArrayList<String>(Arrays.asList("good morning jarvis", "good afternoon jarvis", "good evening jarvis", "hello jarvis", "hey jarvis", "hi jarvis", "jarvis" ))
-		, new ArrayList<String>(Arrays.asList("farewell jarvis", "goodbye jarvis", "bye jarvis", "terminate jarvis", "jarvis terminate" ))
-		, new ArrayList<String>(Arrays.asList( "what's today's weather", "what's the weather like", "how's the weather", "is it raining", "is it sunny" )) };
+	private final static Object input_lists[] = new Object[input_triggers.length];
 	private final static int greets_index = 0;
 	private final static int farewell_index = 1;
 	private final static int weather_current_index = 2;
 	
 	private final static String already_here_trigger = "/*ALREADY_HERE*/";
 	private final static String output_triggers[] = {already_here_trigger};
-	private final static Object output_lists[] = {new ArrayList<String>(Arrays.asList("i'm here USER", "i can hear you USER", "how should i serve you USER", "what can i do for you USER", "how may i be of service USER"))};
+	private final static Object output_lists[] = new Object[output_triggers.length];
 	private final static int already_here_index = 0;
 
 	private final static String greetReplies[] = { "good morning ", "good afternoon ", "good evening "};
@@ -107,8 +105,8 @@ public class TextSystem {
 		}	
 	}
 	
-	public static final String getFarewellReply() {
-		return farewellReply;
+	public static final String getFarewellReply(Configuration config) {
+		return farewellReply + config.getUserName();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -172,16 +170,19 @@ public class TextSystem {
 		return weatherForecastReply_1 + condition + weatherForecastReply_2 + minCelsius + weatherForecastReply_3 + maxCelsius + weatherForecastReply_4 + rainProbability + weatherForecastReply_5;
 	}
 	
-	public static String currentGreetReply() {
+	public static String currentGreetReply(Configuration config) {
 		Time t = Time.getCurrentTime();
 		int hours = t.getHours();
 
+		String timeReply;
 		if(hours >= 5 && hours <= 12) {
-			return greetReplies[greetRepliesType.MORNING.ordinal()];
+			timeReply = greetReplies[greetRepliesType.MORNING.ordinal()];
 		} else if(hours >= 13 && hours <= 20) {
-			return greetReplies[greetRepliesType.AFTERNOON.ordinal()];
+			timeReply = greetReplies[greetRepliesType.AFTERNOON.ordinal()];
 		} else {
-			return greetReplies[greetRepliesType.EVENING.ordinal()];
+			timeReply = greetReplies[greetRepliesType.EVENING.ordinal()];
 		}
+		
+		return timeReply + config.getUserName();
 	}
 }
