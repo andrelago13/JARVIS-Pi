@@ -2,32 +2,25 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/sphinx4-1.0beta6/lib/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/sphinx4-1.0beta6/lib/sphinx4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/sphinx4-1.0beta6/lib/jsapi.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/cmu_time_awb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/cmu_us_kal.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/cmudict04.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/cmulex.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/cmutimelex.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/en_us.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/freetts.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/freetts-jsapi10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/Speaker/freetts-1.2/lib/mbrola.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/MP3 Player/jl1.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/commons-io-2.4/commons-io-2.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Documents/JARVIS Pi/JSON/json-20151123.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/icu4j-54.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-client-5.1.2-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-lang-de-5.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-lang-en-5.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-lang-fr-5.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-lang-it-5.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-lang-ru-5.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-lang-sv-5.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-lang-te-5.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-lang-tr-5.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/marytts-runtime-5.1.2-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="C:/Users/André/Desktop/marytts-5.1.2/lib/voice-cmu-slt-hsmm-5.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="lib/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="lib/cmudict04.jar"/>
+	<classpathentry kind="lib" path="lib/cmulex.jar"/>
+	<classpathentry kind="lib" path="lib/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/en_us.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="lib/freetts.jar"/>
+	<classpathentry kind="lib" path="lib/icu4j-54.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/jsapi.jar"/>
+	<classpathentry kind="lib" path="lib/json-20151123.jar"/>
+	<classpathentry kind="lib" path="lib/marytts-client-5.1.2-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="lib/marytts-lang-en-5.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/marytts-runtime-5.1.2-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="lib/mbrola.jar"/>
+	<classpathentry kind="lib" path="lib/sphinx4.jar"/>
+	<classpathentry kind="lib" path="lib/voice-cmu-slt-hsmm-5.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
