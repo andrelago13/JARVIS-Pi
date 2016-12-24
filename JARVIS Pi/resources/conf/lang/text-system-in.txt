@@ -1,4 +1,4 @@
-/*GREET*/
+____GREET____
 good morning jarvis
 good afternoon jarvis
 good evening jarvis
@@ -6,13 +6,13 @@ hello jarvis
 hey jarvis
 hi jarvis
 jarvis
-/*FAREWELL*/
+____FAREWELL____
 farewell jarvis
 goodbye jarvis
 bye jarvis
 terminate jarvis
 jarvis terminate
-/*WEATHER_CURRENT*/
+____WEATHER_CURRENT____
 what's today's weather
 what's the weather like
 how's the weather

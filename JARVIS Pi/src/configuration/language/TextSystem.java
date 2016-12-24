@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import time.Time;
@@ -20,16 +19,16 @@ public class TextSystem {
 	private final static String defaultUserInputFile = "text-system-in.txt";
 	private final static String defaultUserOutputFile = "text-system-out.txt";
 	
-	private final static String greets_trigger = "/*GREET*/";
-	private final static String farewell_trigger = "/*FAREWELL*/";
-	private final static String weather_current_trigger = "/*WEATHER_CURRENT*/";
+	private final static String greets_trigger = "____GREET____";
+	private final static String farewell_trigger = "____FAREWELL____";
+	private final static String weather_current_trigger = "____WEATHER_CURRENT____";
 	private final static String input_triggers[] = {greets_trigger, farewell_trigger, weather_current_trigger};
 	private final static Object input_lists[] = new Object[input_triggers.length];
 	private final static int greets_index = 0;
 	private final static int farewell_index = 1;
 	private final static int weather_current_index = 2;
 	
-	private final static String already_here_trigger = "/*ALREADY_HERE*/";
+	private final static String already_here_trigger = "____ALREADY_HERE____";
 	private final static String output_triggers[] = {already_here_trigger};
 	private final static Object output_lists[] = new Object[output_triggers.length];
 	private final static int already_here_index = 0;
@@ -49,6 +48,8 @@ public class TextSystem {
 	private final static String weatherForecastReply_4 = " celsius degrees. Probability of rain is ";
 	private final static String weatherForecastReply_5 = " percent.";
 	
+	private final static char TRIGGER_START = greets_trigger.charAt(0);
+	
 	public static void initiate() throws ClassNotFoundException, IOException {
 		initiateUserInput();
 		initiateUserOutput();
@@ -61,7 +62,7 @@ public class TextSystem {
 		ArrayList<String> temp = new ArrayList<String>();
 		
 		for (String line : Files.readAllLines(Paths.get(file_path))) {
-			if(line.charAt(0) == '/' && temp.size() > 0) {	// found end of section
+			if(line.charAt(0) == TRIGGER_START && temp.size() > 0) {	// found end of section
 				lists[curr_index] = (ArrayList<String>) temp.clone();
 				temp.clear();
 			}

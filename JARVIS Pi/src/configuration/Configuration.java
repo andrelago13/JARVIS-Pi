@@ -24,6 +24,7 @@ public class Configuration implements Serializable {		// SINGLETON
 	private String filePath;
 	private String fileName;
 	private String userName;
+	private boolean DEBUG = false;
 
 	protected static Configuration instance = null;
 
@@ -89,6 +90,7 @@ public class Configuration implements Serializable {		// SINGLETON
 		setFileName(defaultFileName);
 		setFilePath(defaultFilePath);
 		setUserName(defaultUserName);
+		setDebug(true);
 	}
 
 	public String getFilePath() {
@@ -115,6 +117,10 @@ public class Configuration implements Serializable {		// SINGLETON
 		return defaultUserName;
 	}
 
+	public boolean isDebug() {
+		return DEBUG;
+	}
+	
 	public void setUserName(String name) throws IllegalArgumentException {
 		if(name == null)
 			throw new IllegalArgumentException();
@@ -143,4 +149,7 @@ public class Configuration implements Serializable {		// SINGLETON
 		fileName = name;
 	}
 
+	public void setDebug(boolean enabled) {
+		DEBUG = enabled;
+	}
 }
