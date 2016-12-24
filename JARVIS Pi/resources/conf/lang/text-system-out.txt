@@ -1,6 +1,10 @@
 ____ALREADY_HERE____
-i'm here USER
-i can hear you USER
-how should i serve you USER
-what can i do for you USER
-how may i be of service USER
+i'm here $USER_NAME$
+i can hear you $USER_NAME$
+how should i serve you $USER_NAME$
+what can i do for you $USER_NAME$
+how may i be of service $USER_NAME$
+____GREET_REPLIES____
+good morning $USER_NAME$
+good afternoon $USER_NAME$
+good evening $USER_NAME$

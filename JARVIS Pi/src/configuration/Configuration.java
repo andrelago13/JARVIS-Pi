@@ -17,6 +17,7 @@ public class Configuration implements Serializable {		// SINGLETON
 	private static String defaultFilePath = "./resources/conf/";
 	private static String defaultFileName = "settings.conf";
 	private static String defaultUserName = "sir";
+	private static boolean defaultDebug = true;
 	
 	/*
 	 * 		OBJECT ATTRIBUTES
@@ -24,7 +25,7 @@ public class Configuration implements Serializable {		// SINGLETON
 	private String filePath;
 	private String fileName;
 	private String userName;
-	private boolean DEBUG = false;
+	private boolean DEBUG;
 
 	protected static Configuration instance = null;
 
@@ -90,7 +91,7 @@ public class Configuration implements Serializable {		// SINGLETON
 		setFileName(defaultFileName);
 		setFilePath(defaultFilePath);
 		setUserName(defaultUserName);
-		setDebug(true);
+		setDebug(defaultDebug);
 	}
 
 	public String getFilePath() {
