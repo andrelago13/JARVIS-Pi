@@ -14,6 +14,7 @@ import weather.WUCondition;
 import weather.WUForecast;
 import weather.WeatherUnderground;
 import jarvis.interaction.Interactor;
+import jarvis.interaction.JarvisException;
 
 public class Main {
 
@@ -22,7 +23,7 @@ public class Main {
 	private static final int HOUR = 60 * MINUTE;
 	private static final int DAY = 24 * HOUR;*/
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		
 		/*MaryInterface marytts = new LocalMaryInterface();
 		Set<String> voices = marytts.getAvailableVoices();
@@ -37,9 +38,15 @@ public class Main {
 		try {
 			it = new Interactor();
 			it.run();
-		} catch (ClassNotFoundException | IOException e) {
+		} catch (JarvisException e) {
 			e.printStackTrace();
 			System.exit(1);
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+			System.exit(2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(3);
 		}
 		System.exit(0);
 		//*/

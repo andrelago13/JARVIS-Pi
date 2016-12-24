@@ -56,12 +56,16 @@ public class Interactor implements MainJarvisContext {
 		}
 	}
 
-	public void activate() {
+	public void activate() throws JarvisException {
 		if(isActive())
 			return;
-
+		
 		active = true;
-		TextSystem.initiate();
+		try {
+			TextSystem.initiate();
+		} catch (ClassNotFoundException | IOException e) {
+			throw new JarvisException("Unable to load text system.", e);
+		}
 		this.state.activate();
 	}
 
@@ -105,7 +109,7 @@ public class Interactor implements MainJarvisContext {
 		return active;
 	}
 
-	public void run() {
+	public void run() throws JarvisException {
 		activate();
 		execute();
 	}

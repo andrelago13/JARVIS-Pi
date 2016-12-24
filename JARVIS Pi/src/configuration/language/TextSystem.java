@@ -38,7 +38,7 @@ public class TextSystem {
 	private static enum greetRepliesType { MORNING, AFTERNOON, EVENING };
 	private final static String farewellReply = "goodbye ";
 	
-	private final static String weatherConditionReply_1 = "Current weather in ";
+	private final static String weatherConditionReply_1 = "The current weather in ";
 	private final static String weatherConditionReply_2 = " is ";
 	private final static String weatherConditionReply_3 = " with a temperature of ";
 	private final static String weatherConditionReply_4 = " Celsius degrees.";
@@ -49,7 +49,7 @@ public class TextSystem {
 	private final static String weatherForecastReply_4 = " celsius degrees. Probability of rain is ";
 	private final static String weatherForecastReply_5 = " percent.";
 	
-	public static void initiate() {
+	public static void initiate() throws ClassNotFoundException, IOException {
 		initiateUserInput();
 		initiateUserOutput();
 		// INITIATE OTHER SUBSYSTEMS HERE
@@ -83,26 +83,14 @@ public class TextSystem {
 		lists[curr_index] = (ArrayList<String>) temp.clone();
 	}
 	
-	private static void initiateUserInput() {
-		try {
-			Configuration config = Configuration.getInstance();
-			load(config.getFilePath() + defaultFilePath + defaultUserInputFile, input_triggers, input_lists);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}		
+	private static void initiateUserInput() throws ClassNotFoundException, IOException {
+		Configuration config = Configuration.getInstance();
+		load(config.getFilePath() + defaultFilePath + defaultUserInputFile, input_triggers, input_lists);
 	}
 	
-	private static void initiateUserOutput() {
-		try {
-			Configuration config = Configuration.getInstance();
-			load(config.getFilePath() + defaultFilePath + defaultUserOutputFile, output_triggers, output_lists);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}	
+	private static void initiateUserOutput() throws ClassNotFoundException, IOException {
+		Configuration config = Configuration.getInstance();
+		load(config.getFilePath() + defaultFilePath + defaultUserOutputFile, output_triggers, output_lists);
 	}
 	
 	public static final String getFarewellReply(Configuration config) {
